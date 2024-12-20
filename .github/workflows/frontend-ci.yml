@@ -1,29 +1,18 @@
-name: Frontend CI
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
+test-frontend:
+    runs-on: ubuntu-latest  # Use Ubuntu because npm/yarn works best here
     steps:
-    - name: Check out repository code
-      uses: actions/checkout@v3
+      - name: Check out repository code
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'  # Specify the Node.js version used by your project
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Make sure your project requires Node 16 or change accordingly
 
-    - name: Install dependencies
-      run: |
-        npm install  # Or 'yarn install' if you're using Yarn
+      - name: Install dependencies
+        run: |
+          npm install  # Or you can use 'yarn install' if your project uses yarn instead of npm
 
-    - name: Run frontend tests
-      run: |
-        npm test  # Adjust this to your preferred test command (e.g., `yarn test`, `react-scripts test`, etc.)
+      - name: Run frontend tests
+        run: |
+          npm test  # Or run other npm scripts (e.g., 'yarn test')
