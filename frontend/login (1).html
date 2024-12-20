@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="center">
+      <h1>Login</h1>
+
+      <div id="messages"></div>
+        
+      <form id="login-form">
+        <div class="txt_field">
+          <input type="text" required name="username" id="username">
+          <span></span>
+          <label>Username</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="password" required name="password" id="password">
+          <span></span>
+          <label>Password</label>
+        </div>
+
+        <input type="submit" value="Login">
+        <div class="signup_link">
+          Not a member? <a href="register.html">Signup</a>
+          <p>Forgot your Password? <a href="forgot_password.html">Reset Password</a></p>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        window.location.href = 'dashboard.html';
+      });
+    </script>
+  </body>
+</html>
