@@ -13,7 +13,8 @@ router.register(r'grades', views.GradeViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('signup/', SignupView.as_view(), name='signup'),
+    path('signup/', SignupView.as_view(), name='signup'),  # Ensure this matches the URL pattern in the test
     path('login/', LoginView.as_view(), name='login'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
+

@@ -1,28 +1,22 @@
+# test_user_serializer.py
+
+from django.urls import reverse
+from rest_framework.test import APIClient
 from django.test import TestCase
-from unittest.mock import MagicMock
-from base.serializers import UserSerializer
 
-class UserSerializerTest(TestCase):
-    def test_user_serializer_valid(self):
-        data = {
-            'name': 'John Doe',
-            'email': 'johndoe@example.com',
-            'password': 'password123',
-        }
-        # Mocking the User model
-        mock_user = MagicMock()
-        serializer = UserSerializer(mock_user, data=data)
-        self.assertTrue(serializer.is_valid())
+class UserSignupTestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
 
-    def test_user_serializer_invalid(self):
-        # Missing required field 'email'
+    def test_signup(self):
         data = {
-            'name': 'John Doe',
-            'password': 'password123',
+            "email": "testuser@example.com",
+            "password": "securepassword123",
+            "username": "testuser"
         }
-        serializer = UserSerializer(data=data)
-        self.assertFalse(serializer.is_valid())
-        self.assertIn('email', serializer.errors)
+        # Corrected: Change reverse('register') to reverse('signup')
+        response = self.client.post(reverse('signup'), data)  # This should match the 'signup' URL in urls.py
+        self.assertEqual(response.status_code, 201)  # Expecting a 201 status code (created)
 
 
 
