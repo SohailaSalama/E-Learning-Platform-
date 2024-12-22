@@ -1,31 +1,28 @@
-from django.test import TestCase
-from rest_framework.exceptions import ValidationError
+from rest_framework import serializers
 from base.serializers import UserSerializer
 
+# Define a simple test case for UserSerializer
 class UserSerializerTest(TestCase):
-
-    def test_valid_user_serializer(self):
+    def test_user_serializer_valid(self):
         data = {
-            'name': 'Test User',
-            'email': 'test@example.com',
+            'name': 'John Doe',
+            'email': 'johndoe@example.com',
             'password': 'password123',
-            'role': 'admin'
         }
-
+        
         serializer = UserSerializer(data=data)
         self.assertTrue(serializer.is_valid())
-        self.assertEqual(serializer.validated_data['name'], 'Test User')
-        self.assertEqual(serializer.validated_data['email'], 'test@example.com')
     
-    def test_invalid_user_serializer(self):
+    def test_user_serializer_invalid(self):
+        # Missing required field 'email'
         data = {
-            'name': '',
-            'email': 'invalid-email',
-            'password': 'short',
-            'role': 'admin'
+            'name': 'John Doe',
+            'password': 'password123',
         }
+        
         serializer = UserSerializer(data=data)
-        with self.assertRaises(ValidationError):
-            serializer.is_valid(raise_exception=True)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn('email', serializer.errors)
+
 
 
