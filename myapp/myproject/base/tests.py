@@ -20,15 +20,24 @@ class UserModelTest(TestCase):
 
 # Mocking the Course model to avoid real database interactions
 class CourseModelTest(TestCase):
+    @mock.patch('base.models.User.objects.create')
     @mock.patch('base.models.Course.objects.create')
-    def test_course_creation(self, mock_create):
-        mock_create.return_value = Course(name="Test Course", description="A test course", doctor="Dr. Smith")
+    def test_course_creation(self, mock_course_create, mock_user_create):
+        # Mock the return value of User.objects.create()
+        mock_user_create.return_value = User(name="Dr. Smith", email="drsmith@example.com", role="doctor")
+        
+        # Mock the return value of Course.objects.create()
+        mock_course_create.return_value = Course(name="Test Course", description="A test course", doctor=mock_user_create.return_value)
 
-        course = Course.objects.create(name="Test Course", description="A test course", doctor="Dr. Smith")
+        # Create the mock course
+        course = Course.objects.create(name="Test Course", description="A test course", doctor=mock_user_create.return_value)
 
-        mock_create.assert_called_with(name="Test Course", description="A test course", doctor="Dr. Smith")
+        mock_user_create.assert_called_with(name="Dr. Smith", email="drsmith@example.com", role="doctor")
+        mock_course_create.assert_called_with(name="Test Course", description="A test course", doctor=mock_user_create.return_value)
+        
         self.assertEqual(course.name, "Test Course")
         self.assertEqual(course.description, "A test course")
+        self.assertEqual(course.doctor.name, "Dr. Smith")
 
 
 # Mocking the Assignment model to avoid real database interactions
@@ -48,14 +57,17 @@ class AssignmentModelTest(TestCase):
 class GradeModelTest(TestCase):
     @mock.patch('base.models.Grade.objects.create')
     def test_grade_creation(self, mock_create):
+        # Mock the return value of Grade.objects.create()
         mock_create.return_value = Grade(grade_value=90, student_id=1, assignment_id=1)
 
+        # Call the method you want to test
         grade = Grade.objects.create(grade_value=90, student_id=1, assignment_id=1)
 
         mock_create.assert_called_with(grade_value=90, student_id=1, assignment_id=1)
         self.assertEqual(grade.grade_value, 90)
         self.assertEqual(grade.student_id, 1)
         self.assertEqual(grade.assignment_id, 1)
+
 
 
 # Mocking the Enrollment model to avoid real database interactions
