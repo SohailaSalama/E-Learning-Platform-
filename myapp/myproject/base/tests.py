@@ -14,3 +14,20 @@ class UserModelTest(TestCase):
         mock_create.assert_called_with(name="Test User", email="test@example.com")
         self.assertEqual(user.name, "Test User")
         self.assertEqual(user.email, "test@example.com")
+from rest_framework.test import APITestCase
+from base.models import User
+from base.serializers import UserSerializer
+
+class UserSerializerTest(APITestCase):
+    def test_user_serializer(self):
+        data = {
+            'name': 'Test User',
+            'email': 'test@example.com',
+            'password': 'password123',
+            'role': 'student',
+        }
+        
+        serializer = UserSerializer(data=data)
+        self.assertTrue(serializer.is_valid())
+        self.assertEqual(serializer.validated_data['name'], 'Test User')
+        self.assertEqual(serializer.validated_data['email'], 'test@example.com')
