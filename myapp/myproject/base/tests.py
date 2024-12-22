@@ -16,7 +16,8 @@ class UserModelTest(TestCase):
         self.assertEqual(user.email, "test@example.com")
 from rest_framework.test import APITestCase
 from base.models import User
-from base.serializers import UserSerializer
+from api.serializers import UserSerializer
+
 
 class UserSerializerTest(APITestCase):
     def test_user_serializer(self):
