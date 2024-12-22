@@ -1,4 +1,5 @@
 from django.test import TestCase
+from unittest.mock import MagicMock
 from base.serializers import CourseSerializer
 
 class CourseSerializerTest(TestCase):
@@ -7,9 +8,9 @@ class CourseSerializerTest(TestCase):
             'name': 'Django for Beginners',
             'description': 'Learn Django from scratch',
         }
-        # Create a CourseSerializer instance
-        serializer = CourseSerializer(data=data)
-        # Check if the serializer is valid
+        # Mocking the Course model
+        mock_course = MagicMock()
+        serializer = CourseSerializer(mock_course, data=data)
         self.assertTrue(serializer.is_valid())
 
     def test_course_serializer_invalid(self):
@@ -18,8 +19,8 @@ class CourseSerializerTest(TestCase):
             'description': 'Learn Django from scratch',
         }
         serializer = CourseSerializer(data=data)
-        # Check if the serializer is invalid and 'name' is a required field
         self.assertFalse(serializer.is_valid())
         self.assertIn('name', serializer.errors)
+
 
 

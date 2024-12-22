@@ -1,4 +1,5 @@
 from django.test import TestCase
+from unittest.mock import MagicMock
 from base.serializers import UserSerializer
 
 class UserSerializerTest(TestCase):
@@ -8,9 +9,9 @@ class UserSerializerTest(TestCase):
             'email': 'johndoe@example.com',
             'password': 'password123',
         }
-        # Create a UserSerializer instance
-        serializer = UserSerializer(data=data)
-        # Check if the serializer is valid
+        # Mocking the User model
+        mock_user = MagicMock()
+        serializer = UserSerializer(mock_user, data=data)
         self.assertTrue(serializer.is_valid())
 
     def test_user_serializer_invalid(self):
@@ -20,9 +21,10 @@ class UserSerializerTest(TestCase):
             'password': 'password123',
         }
         serializer = UserSerializer(data=data)
-        # Check if the serializer is invalid and 'email' is a required field
         self.assertFalse(serializer.is_valid())
         self.assertIn('email', serializer.errors)
+
+
 
 
 
