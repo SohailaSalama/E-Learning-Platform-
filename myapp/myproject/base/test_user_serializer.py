@@ -1,26 +1,31 @@
 from django.test import TestCase
-from unittest import mock
-from base.models import User
-from api.serializers import UserSerializer
+from rest_framework.exceptions import ValidationError
+from base.serializers import UserSerializer
 
 class UserSerializerTest(TestCase):
 
-    @mock.patch('base.models.User.objects.create')  # Mock User creation
-    def test_user_serializer_valid(self, mock_user_create):
-        # Mock User creation
-        mock_user_create.return_value = User(name="Test User", email="testuser@example.com", role="student")
-
-        # Create user data
-        user_data = {
+    def test_valid_user_serializer(self):
+        data = {
             'name': 'Test User',
-            'email': 'testuser@example.com',
+            'email': 'test@example.com',
             'password': 'password123',
-            'role': 'student'
+            'role': 'admin'
         }
 
-        # Serialize the user data
-        serializer = UserSerializer(data=user_data)
-
-        # Check if the serializer is valid
+        serializer = UserSerializer(data=data)
         self.assertTrue(serializer.is_valid())
+        self.assertEqual(serializer.validated_data['name'], 'Test User')
+        self.assertEqual(serializer.validated_data['email'], 'test@example.com')
+    
+    def test_invalid_user_serializer(self):
+        data = {
+            'name': '',
+            'email': 'invalid-email',
+            'password': 'short',
+            'role': 'admin'
+        }
+        serializer = UserSerializer(data=data)
+        with self.assertRaises(ValidationError):
+            serializer.is_valid(raise_exception=True)
+
 

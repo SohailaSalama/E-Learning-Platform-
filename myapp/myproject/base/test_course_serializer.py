@@ -1,25 +1,26 @@
 from django.test import TestCase
-from unittest import mock
-from base.models import Course, User
-from api.serializers import CourseSerializer
+from rest_framework.exceptions import ValidationError
+from base.serializers import CourseSerializer
 
 class CourseSerializerTest(TestCase):
 
-    @mock.patch('base.models.User.objects.create')  # Mock User creation
-    def test_course_serializer_valid(self, mock_user_create):
-        # Mock User object
-        mock_user_create.return_value = User(name="Dr. Smith", email="drsmith@example.com", role="doctor")
-
-        # Create course data with mocked doctor
-        course_data = {
+    def test_valid_course_serializer(self):
+        data = {
             'name': 'Test Course',
-            'description': 'This is a test course.',
-            'doctor': mock_user_create.return_value  # Using the mocked User instance
+            'description': 'A description of the test course'
         }
 
-        # Serialize the course data
-        serializer = CourseSerializer(data=course_data)
-        
-        # Check if the serializer is valid
+        serializer = CourseSerializer(data=data)
         self.assertTrue(serializer.is_valid())
+        self.assertEqual(serializer.validated_data['name'], 'Test Course')
+        self.assertEqual(serializer.validated_data['description'], 'A description of the test course')
+
+    def test_invalid_course_serializer(self):
+        data = {
+            'name': '',
+            'description': ''
+        }
+        serializer = CourseSerializer(data=data)
+        with self.assertRaises(ValidationError):
+            serializer.is_valid(raise_exception=True)
 
