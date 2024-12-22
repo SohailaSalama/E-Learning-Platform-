@@ -27,14 +27,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
         messagesDiv.innerHTML = '<center><h4 style="color: dodgerblue;">Password reset successful</h4></center>';
     });
-
-    const loginForm = document.getElementById('login-form');
-    const loginMessagesDiv = document.getElementById('messages');
-
-    loginForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        loginMessagesDiv.innerHTML = '<center><h4 style="color: dodgerblue;">Login successful</h4></center>';
-        window.location.href = 'dashboard.html';
-    });
-});
