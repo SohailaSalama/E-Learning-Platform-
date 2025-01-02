@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grade Assignment</title>
+</head>
+<body>
+    <h1>Grading Submission for: {{ assignment.title }}</h1>
+    <p>Submission by: {{ submission.student.username }}</p>
+    <p>Submitted on: {{ submission.submitted_at }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="grade">Grade:</label>
+        <input type="text" id="grade" name="grade" required>
+        <button type="submit">Submit Grade</button>
+    </form>
+</body>
+</html>
