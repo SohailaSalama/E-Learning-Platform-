@@ -1,26 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course 2: Advanced Web Development</title>
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="top-nav">
-      <div class="nav-left">
-        <a href="dashboard.html" class="icon-link">Dashboard</a>
-      </div>
-      <div class="nav-right">
-        <a href="logout.html" class="icon-link">Logout</a>
-      </div>
+</head>
+<body>
+    <header class="top-nav">
+        <div class="nav-left">
+            <a href="dashboard.html" class="icon-link">Dashboard</a>
+        </div>
+        <div class="nav-right">
+            <a href="logout.html" class="icon-link">Logout</a>
+        </div>
+    </header>
+
+    <div class="course-wrapper">
+        <h1>Advanced Web Development</h1>
+        <section class="course-content expanded">
+            <p>Welcome to the Advanced Web Development course. Here you will learn advanced techniques in web development.</p>
+
+            <h2>Course Features</h2>
+            <ul>
+              <li><button onclick="window.location.href='course_content.html'">View Course Content</button></li>
+              <li><button onclick="window.location.href='grades.html'">View Grades</button></li>
+              <li><button onclick="window.location.href='assignments.html'">Assignments</button></li>
+          </ul>
+          
+        </section>
+
+        <section class="course-details expanded">
+            <h2>About This Course</h2>
+            <p>This course covers advanced topics such as:</p>
+            <ul>
+                <li>Advanced JavaScript Frameworks</li>
+                <li>Server-Side Rendering Techniques</li>
+                <li>Optimizing Web Performance</li>
+                <li>Secure Web Application Development</li>
+            </ul>
+        </section>
     </div>
 
-    <div class="course-content">
-      <h1>Advanced Web Development</h1>
-      <p>Welcome to the Advanced Web Development course. Here you will learn advanced techniques in web development.</p>
-      <!-- Add course content here -->
-    </div>
+    <footer class="footer">
+        <p>&copy; 2024 E-learning Platform. All rights reserved.</p>
+    </footer>
 
-    <script src="script.js"></script>
-  </body>
+    <style>
+        .course-wrapper {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .expanded {
+            margin-bottom: 20px;
+        }
+
+        .course-content ul, .course-details ul {
+            padding-left: 20px;
+            list-style: circle;
+        }
+
+        .course-content button, .course-details button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .course-content button:hover, .course-details button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</body>
 </html>

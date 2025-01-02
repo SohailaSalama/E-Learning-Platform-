@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Assignments</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-nav">
+        <div class="nav-left">
+            <a href="dashboard.html" class="icon-link">Dashboard</a>
+        </div>
+        <div class="nav-right">
+            <a href="logout.html" class="icon-link">Logout</a>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <h1>Assignments</h1>
+        <section class="assignments-list expanded">
+            <p>Below are your assignments for Advanced Web Development:</p>
+            <ul>
+                <li>
+                    Assignment 1: Build a responsive website using advanced CSS techniques
+                    <button onclick="window.location.href='upload_assignment.html'">Submit</button>
+                </li>
+                <li>
+                    Assignment 2: Create a single-page application using React
+                    <button onclick="window.location.href='upload_assignment.html'">Submit</button>
+                </li>
+                <li>
+                    Assignment 3: Implement a server-side rendering project
+                    <button onclick="window.location.href='upload_assignment.html'">Submit</button>
+                </li>
+            </ul>
+        </section>
+
+        <section class="progress">
+            <h2>Track Your Learning Progress</h2>
+            <p>Monitor your progress in the course:</p>
+            <ul>
+                <li>Completed Assignments: 2/3</li>
+                <li>Overall Grade: 87%</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 E-learning Platform. All rights reserved.</p>
+    </footer>
+
+    <style>
+        .content-wrapper {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .assignments-list ul {
+            padding-left: 20px;
+            list-style: circle;
+        }
+
+        .assignments-list button {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .assignments-list button:hover {
+            background-color: #0056b3;
+        }
+
+        .progress {
+            margin-top: 20px;
+            background: #e9f5ff;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .progress ul {
+            padding-left: 20px;
+            list-style: none;
+        }
+
+        .progress ul li {
+            margin: 5px 0;
+        }
+    </style>
+</body>
+</html>

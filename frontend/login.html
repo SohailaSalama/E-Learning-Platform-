@@ -32,10 +32,32 @@
       </form>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
       document.getElementById('login-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        window.location.href = 'dashboard.html';
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        if (!username || !password) {
+          document.getElementById('messages').innerHTML = '<center><h4 style="color: firebrick;">Please fill in all fields</h4></center>';
+          return;
+        }
+
+        // Send login request to backend API
+        axios.post('http://127.0.0.1:8000/login/', {
+          username: username,
+          password: password
+        })
+        .then(response => {
+          // If login successful, redirect to dashboard
+          window.location.href = 'dashboard.html';
+        })
+        .catch(error => {
+          // If login failed, show error message
+          document.getElementById('messages').innerHTML = '<center><h4 style="color: firebrick;">Invalid credentials</h4></center>';
+        });
       });
     </script>
   </body>

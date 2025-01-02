@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Grades</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-nav">
+        <div class="nav-left">
+            <a href="dashboard.html" class="icon-link">Dashboard</a>
+        </div>
+        <div class="nav-right">
+            <a href="logout.html" class="icon-link">Logout</a>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <h1>Grades</h1>
+        <section class="grades-table expanded">
+            <p>Your grades for Advanced Web Development:</p>
+            <table>
+                <tr>
+                    <th>Assignment</th>
+                    <th>Grade</th>
+                </tr>
+                <tr>
+                    <td>Assignment 1</td>
+                    <td>85%</td>
+                </tr>
+                <tr>
+                    <td>Assignment 2</td>
+                    <td>90%</td>
+                </tr>
+                <tr>
+                    <td>Assignment 3</td>
+                    <td>88%</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 E-learning Platform. All rights reserved.</p>
+    </footer>
+
+    <style>
+        .content-wrapper {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .grades-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .grades-table th, .grades-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</body>
+</html>

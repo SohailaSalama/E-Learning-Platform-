@@ -4,39 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="logout.html">Logout</a>
-        </nav>
+    <header class="top-nav">
+        <div class="nav-left">
+            <a href="home.html" class="icon-link">Home</a>
+        </div>
+        <div class="nav-right">
+            <a href="dashboard.html" class="icon-link">Dashboard</a>
+            <a href="logout.html" class="icon-link">Logout</a>
+        </div>
     </header>
-    <main>
-        <section>
-            <h1>Courses</h1>
+    <div class="center">
+        <h1>Our Courses</h1>
+        <section class="course-info">
             <div class="courses">
                 <div class="course">
                     <h3>Web Development</h3>
                     <p>Learn how to build modern web applications.</p>
-                    <button>Enroll</button>
+                    <button onclick="window.location.href='register.html'">Enroll</button>
                 </div>
                 <div class="course">
                     <h3>Data Science</h3>
                     <p>Master data analysis and visualization techniques.</p>
-                    <button>Enroll</button>
+                    <button onclick="window.location.href='register.html'">Enroll</button>
                 </div>
                 <div class="course">
                     <h3>Cybersecurity</h3>
                     <p>Understand the essentials of network security.</p>
-                    <button>Enroll</button>
+                    <button onclick="window.location.href='register.html'">Enroll</button>
                 </div>
             </div>
         </section>
-    </main>
-    <footer>
+    </div>
+    <footer class="footer">
         <p>&copy; 2024 E-learning Platform. All rights reserved.</p>
     </footer>
 </body>
