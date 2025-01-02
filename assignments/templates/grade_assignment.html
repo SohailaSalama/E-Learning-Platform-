@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Grade Assignment: {{ submission.assignment.title }}</h2>
+<p>Submitted by: {{ submission.student.username }}</p>
+<p>Submission: {{ submission.text }}</p>
+<p>File: <a href="{{ submission.file.url }}">{{ submission.file.name }}</a></p>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="grade">Grade:</label>
+    <input type="text" id="grade" name="grade" value="{{ submission.grade }}">
+    
+    <label for="feedback">Feedback:</label>
+    <textarea id="feedback" name="feedback">{{ submission.feedback }}</textarea>
+    
+    <button type="submit">Submit Grade</button>
+</form>
+{% endblock %}
