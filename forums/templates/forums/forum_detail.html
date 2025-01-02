@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ forum.name }}</h1>
+<p>{{ forum.description }}</p>
+
+<h2>Posts</h2>
+<ul>
+    {% for post in posts %}
+    <li>
+        <strong>{{ post.author.username }}</strong>: {{ post.content }}
+        <br>
+        <small>Posted on {{ post.created_at }}</small>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'post_create' forum.id %}">Create a New Post</a>
+{% endblock %}
